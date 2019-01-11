@@ -9,6 +9,12 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 @import './sidebar.scss';
 @import './svgicon.scss';
 
+@font-face {
+    /* font-properties */
+    font-family: FZHanZhenGuangBiaoS-GB;
+    src:url('../fonts/FZHanZhen.ttf')
+}
+
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -81,3 +87,5 @@ a:hover {
 .app-container {
   padding: 20px;
 }
+
+

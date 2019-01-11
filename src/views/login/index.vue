@@ -1,7 +1,43 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">vue-typescript-admin-template</h3>
+    <div class="main-container">
+      <div class="main-header">数字渔场</div>
+      <div class="main-wrapper">
+        <div class="login-log-wrapper">
+          <img class="login-log" :src="require('@pic/插图/首页.png')">  
+        </div>
+        <div class="login-wrapper">
+          <div class="login-header">
+            <div class="login-hd-item active">账号登陆</div>
+            <div class="login-hd-item">扫码登陆</div>
+          </div>
+          <div class="login-body">
+            <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form"  label-position="left">
+              <el-form-item label="" prop="username">
+                <el-input placeholder="请输入用户名" v-model="loginForm.username">
+                  <img slot="prefix" class="input-icon" :src="require('@pic/用户.png')">  
+                </el-input>
+              </el-form-item>
+              <el-form-item label="" prop="password">
+                <el-input placeholder="请输入密码" v-model="loginForm.password">
+                  <img slot="prefix" class="input-icon" :src="require('@pic/密码.png')">  
+                </el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button :loading="loading" type="primary" style="width:100%;margin-top:20px;" @click.native.prevent="handleLogin">
+                  登录
+                </el-button>
+              </el-form-item>
+              <div class="tips">
+                <div class="tips-item" @click="goToRegister">注册</div>
+                <div class="tips-item">忘记密码？</div>
+              </div>
+            </el-form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon name="user" />
@@ -32,7 +68,7 @@
         <span style="margin-right:20px;">username: admin</span>
         <span> password: admin</span>
       </div>
-    </el-form>
+    </el-form> -->
   </div>
 </template>
 
@@ -103,6 +139,10 @@ export default class Login extends Vue {
       }
     });
   }
+
+  goToRegister() {
+    this.$router.push({path: '/register'})
+  }
 }
 </script>
 
@@ -111,7 +151,7 @@ $bg:#2d3a4b;
 $light_gray:#eee;
 
 /* reset element-ui css */
-.login-container {
+/* .login-container {
   .el-input {
     display: inline-block;
     height: 47px;
@@ -137,60 +177,103 @@ $light_gray:#eee;
     border-radius: 5px;
     color: #454545;
   }
-}
+} */
 </style>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
-.login-container {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: $bg;
-  .login-form {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 520px;
-    max-width: 100%;
-    padding: 35px 35px 15px 35px;
-    margin: 120px auto;
+<style lang="scss" scoped>
+.login-container{
+  background: linear-gradient(to right, #3e61d2, #3a88d9);
+  height: 100vh;
+  box-sizing:border-box;
+  background-size:100%;
+  background-position:center;
+  width:100%;
+  overflow: hidden;
+}
+.main-container{
+  width:1200px;
+  margin: 0 auto !important;
+  .main-header{
+    font-size:60px;
+    width: 100%;
+    font-family:FZHanZhenGuangBiaoS-GB;
+    font-weight:400;
+    line-height:113px;
+    color:rgba(255,255,255,1);
+    letter-spacing:50px;
+    text-align:center;
+    padding-top:5%;
   }
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-    span {
-      &:first-of-type {
-        margin-right: 16px;
+  .main-wrapper{
+    margin-top:60px;
+    display:flex;
+    .login-log-wrapper{
+      width:800px;
+      text-align:center;
+    }
+    .login-log{
+      width:600px;
+      height: 400px;
+    }
+    .login-wrapper{
+      width: 300px;
+      height: 360px;
+      background:#fff;
+      box-shadow:0px 0px 10px rgba(103,101,101,0.75);
+      border-radius:4px;
+      .login-header{
+        height: 80px;
+        display: flex;
+        align-items:center;
+      }
+      .login-hd-item{
+        flex:1;
+        text-align:center;
+        font-size:18px;
+        font-family:Microsoft YaHei;
+        font-weight:400;
+        color:#aaa;
+        &.active{
+          color:#5D5D5D;
+        }
+        &:first-child{
+          position: relative;
+          &:after{
+            content:'';
+            width:2px;
+            height:18px;
+            background:#aaa;
+            right: 0;
+            position:absolute;
+            top:2px;
+          }
+        }
+      }
+      .login-body{
+        padding:20px;
+        img{
+          width:18px;
+          height: 18px;
+          margin-left:4px;
+          position: relative;
+          top:4px;
+        }
+        .tips{
+          display:flex;
+          align-items:center;
+          font-size:16px;
+          font-family:Microsoft YaHei;
+          font-weight:400;
+          color:#aaa;
+          .tips-item{
+            flex:1;
+            &:last-child{
+              text-align:right;
+            }
+          }
+        }
       }
     }
-  }
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-  }
-  .title {
-    font-size: 26px;
-    font-weight: 400;
-    color: $light_gray;
-    margin: 0px auto 40px auto;
-    text-align: center;
-    font-weight: bold;
-  }
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
   }
 }
 </style>

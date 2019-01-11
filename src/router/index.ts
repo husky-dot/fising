@@ -21,6 +21,7 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     { path: '/login', component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue') },
+    { path: '/register', component: () => import(/* webpackChunkName: "register" */ '@/views/register/index.vue') },
     { path: '/404', component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue') },
     {
       path: '/',
