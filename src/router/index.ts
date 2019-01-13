@@ -26,7 +26,7 @@ export default new Router({
     {
       path: '/',
       component: Layout,
-      redirect: '/dashboard',
+      redirect: '/example',
       name: 'Dashboard',
       meta: { hidden: true },
       children: [{
@@ -39,19 +39,19 @@ export default new Router({
       component: Layout,
       redirect: '/example/table',
       name: 'Example',
-      meta: { title: 'Example', icon: 'example' },
+      meta: { title: 'Example', icon: 'example', alwaysShow: true },
       children: [
         {
           path: 'table',
           name: 'Table',
           component: () => import(/* webpackChunkName: "table" */ '@/views/table/index.vue'),
-          meta: { title: 'Table', icon: 'table' },
+          meta: { title: 'Table', icon: 'table', hidden: true },
         },
         {
           path: 'tree',
           name: 'Tree',
           component: () => import(/* webpackChunkName: "tree" */ '@/views/tree/index.vue'),
-          meta: { title: 'Tree', icon: 'tree' },
+          meta: { title: 'Tree', icon: 'tree', hidden: true },
         },
       ],
     },

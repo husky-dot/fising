@@ -4,13 +4,16 @@
     <sidebar class="sidebar-container"/>
     <div class="main-container">
       <navbar/>
-      <app-main/>
+      <div class="main-sub-container">
+        <sidebar-menu />
+        <app-main/>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Navbar, AppMain, Sidebar } from './components';
+import { Navbar, AppMain, Sidebar, SidebarMenu } from './components';
 import ResizeMixin from './mixin/ResizeHandler';
 import { Component, Vue } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
@@ -21,6 +24,7 @@ import { DeviceType, AppModule } from '@/store/modules/app';
     Navbar,
     Sidebar,
     AppMain,
+    SidebarMenu
   },
 })
 export default class Layout extends mixins(ResizeMixin) {

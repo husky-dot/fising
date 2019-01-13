@@ -6,6 +6,9 @@
     margin-left: 180px;
     position: relative;
   }
+  .main-sub-container{
+    display: flex;
+  }
   // 侧边栏
   .sidebar-container {
     transition: width 0.28s;
@@ -29,6 +32,15 @@
       overflow-x: hidden!important;
       .el-scrollbar__view {
         height: 100%;
+        background: #304156 !important;
+      }
+      .logo{
+        width: 150px;
+        height: 42px;
+        margin-left:15px;
+        margin-top: 8px;
+        display: inline-block;
+        transition: all .28s;
       }
     }
     .is-horizontal {
@@ -118,6 +130,7 @@
   }
   .withoutAnimation {
     .main-container,
+    .main-sub-container,
     .sidebar-container {
       transition: none;
     }
