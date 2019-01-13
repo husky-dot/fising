@@ -26,7 +26,7 @@ export default new Router({
     {
       path: '/',
       component: Layout,
-      redirect: '/example',
+      redirect: '/fishingmange/index',
       name: 'Dashboard',
       meta: { hidden: true },
       children: [{
@@ -35,23 +35,14 @@ export default new Router({
       }],
     },
     {
-      path: '/example',
+      path: '/fishingmange',
       component: Layout,
-      redirect: '/example/table',
-      name: 'Example',
-      meta: { title: 'Example', icon: 'example', alwaysShow: true },
       children: [
         {
-          path: 'table',
-          name: 'Table',
-          component: () => import(/* webpackChunkName: "table" */ '@/views/table/index.vue'),
-          meta: { title: 'Table', icon: 'table', hidden: true },
-        },
-        {
-          path: 'tree',
-          name: 'Tree',
-          component: () => import(/* webpackChunkName: "tree" */ '@/views/tree/index.vue'),
-          meta: { title: 'Tree', icon: 'tree', hidden: true },
+          path: 'index',
+          name: 'Fishingmange',
+          component: () => import(/* webpackChunkName: "form" */ '@/views/fishingmange/index.vue'),
+          meta: { title: '渔类管理', icon: 'form' },
         },
       ],
     },

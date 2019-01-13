@@ -144,3 +144,15 @@
     }
   }
 }
+
+.fishing-main-container{
+  position: relative;
+  min-height: calc(100vh - 50px);
+  background: green;
+
+  .left-nav-wrapper{
+    width: 220px;
+    background: red;
+    min-height: calc(100vh - 50px);
+  }
+}
