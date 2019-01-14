@@ -41,88 +41,66 @@ export default new Router({
         {
           path: 'index',
           name: 'Fishingmange',
-          component: () => import(/* webpackChunkName: "form" */ '@/views/fishingmange/index.vue'),
-          meta: { title: '渔类管理', icon: 'form' },
+          component: () => import(/* webpackChunkName: "fishingmange" */ '@/views/fishingmange/index.vue'),
+          meta: { title: '渔类管理', icon: '导航栏/渔场管理.png' },
         },
       ],
     },
-    {
-      path: '/form',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          name: 'Form',
-          component: () => import(/* webpackChunkName: "form" */ '@/views/form/index.vue'),
-          meta: { title: 'Form', icon: 'form' },
-        },
-      ],
-    },
-    {
-      path: '/nested',
-      component: Layout,
-      redirect: '/nested/menu1',
-      name: 'Nested',
-      meta: { title: 'Nested', icon: 'nested' },
-      children: [
-        {
-          path: 'menu1',
-          component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index.vue'),
-          name: 'Menu1',
-          meta: { title: 'menu1' },
-          children: [
-            {
-              path: 'menu1-1',
-              component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
-              name: 'Menu1-1',
-              meta: { title: 'menu1-1' },
-            },
-            {
-              path: 'menu1-2',
-              component: () => import(/* webpackChunkName: "menu1-2" */ '@/views/nested/menu1/menu1-2/index.vue'),
-              name: 'Menu1-2',
-              meta: { title: 'menu1-2' },
-              children: [
-                {
-                  path: 'menu1-2-1',
-                  component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
-                  name: 'Menu1-2-1',
-                  meta: { title: 'menu1-2-1' },
-                },
-                {
-                  path: 'menu1-2-2',
-                  component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
-                  name: 'Menu1-2-2',
-                  meta: { title: 'menu1-2-2' },
-                },
-              ],
-            },
-            {
-              path: 'menu1-3',
-              component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
-              name: 'Menu1-3',
-              meta: { title: 'menu1-3' },
-            },
-          ],
-        },
-        {
-          path: 'menu2',
-          component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
-          name: 'Menu2',
-          meta: { title: 'menu2' },
-        },
-      ],
-    },
-    {
-      path: 'external-link',
-      component: Layout,
-      children: [
-        {
-          path: 'https://github.com/Armour/vue-typescript-admin-template',
-          meta: { title: 'ExternalLink', icon: 'link' },
-        },
-      ],
-    },
+    // {
+    //   path: '/nested',
+    //   component: Layout,
+    //   redirect: '/nested/menu1',
+    //   name: 'Nested',
+    //   meta: { title: 'Nested', icon: 'nested' },
+    //   children: [
+    //     {
+    //       path: 'menu1',
+    //       component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index.vue'),
+    //       name: 'Menu1',
+    //       meta: { title: 'menu1' },
+    //       children: [
+    //         {
+    //           path: 'menu1-1',
+    //           component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
+    //           name: 'Menu1-1',
+    //           meta: { title: 'menu1-1' },
+    //         },
+    //         {
+    //           path: 'menu1-2',
+    //           component: () => import(/* webpackChunkName: "menu1-2" */ '@/views/nested/menu1/menu1-2/index.vue'),
+    //           name: 'Menu1-2',
+    //           meta: { title: 'menu1-2' },
+    //           children: [
+    //             {
+    //               path: 'menu1-2-1',
+    //               component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
+    //               name: 'Menu1-2-1',
+    //               meta: { title: 'menu1-2-1' },
+    //             },
+    //             {
+    //               path: 'menu1-2-2',
+    //               component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
+    //               name: 'Menu1-2-2',
+    //               meta: { title: 'menu1-2-2' },
+    //             },
+    //           ],
+    //         },
+    //         {
+    //           path: 'menu1-3',
+    //           component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
+    //           name: 'Menu1-3',
+    //           meta: { title: 'menu1-3' },
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       path: 'menu2',
+    //       component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
+    //       name: 'Menu2',
+    //       meta: { title: 'menu2' },
+    //     },
+    //   ],
+    // },
     { path: '*', redirect: '/404' },
   ],
 });

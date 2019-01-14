@@ -148,11 +148,30 @@
 .fishing-main-container{
   position: relative;
   min-height: calc(100vh - 50px);
-  background: green;
-
+  display: flex;
   .left-nav-wrapper{
     width: 220px;
-    background: red;
     min-height: calc(100vh - 50px);
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  .left-nav-list-wrapper{
+  }
+  .left-nav-item{
+    display: flex;
+    img{
+      width:90px;
+      height:75px;
+    }
+    .item-content{
+      flex: 1;
+    }
+    .more-img{
+      width: 15px;
+      height: 15px;
+    }
+  }
+  .fishing-main{
+    flex: 1;
   }
 }

@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <svg-icon v-if="icon" :name="icon"/>
+  <div class="item-view">
+    <!-- <svg-icon v-if="icon" :name="icon"/> -->
+    <img v-if='icon' :src="require(`@pic/${icon}`)">
     <span v-if="title" slot="title">{{title}}</span>
   </div>
 </template>
@@ -14,3 +15,14 @@ export default class MenuItem extends Vue {
   @Prop({ default: '' }) title!: string;
 }
 </script>
+
+<style scope lang='scss'>
+  .item-view{
+    img{
+      width: 25px;
+      height: 25px;
+      margin-right: 16px;
+    }
+  }
+
+</style>
