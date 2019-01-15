@@ -12,6 +12,9 @@ module.exports = {
     name: 'vue-typescript-admin-template'
   },
   configureWebpack: {
+    externals: {
+      'google': 'google'
+    },
     resolve: {
       alias: {
         'vue$': 'vue/dist/vue.esm.js',
