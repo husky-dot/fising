@@ -19,9 +19,9 @@ export default class MenuItem extends Vue {
 <style scope lang='scss'>
   .item-view{
     img{
-      width: 25px;
-      height: 25px;
-      margin-right: 16px;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
     }
   }
 

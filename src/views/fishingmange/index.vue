@@ -22,9 +22,12 @@
               <img class='more-img' :src="require('@pic/更多.png')" slot="reference">
             </el-popover>
           </div>
-          <div class="left-nav-sub-wrapper">
+          <div class="left-nav-sub-wrapper link-active">
             <div class="left-nav-sub-item">
-              <img :src="require('@pic/bg.png')">
+              <div class="thumb-wrapper">
+                <img :src="require('@pic/bg.png')">
+                <p>301</p>
+              </div>
               <div class="item-content">
                 <div class='content-title'>广东南沙草鱼养殖基地</div>
                 <div class="content-desc">2000亩,草鱼</div>
@@ -74,8 +77,92 @@ export default {
 
   }
   #map {
-  width:100%;
-  height: 100%;
-  display: block;
-}
+    width:100%;
+    height: 100%;
+    display: block;
+  }
+  .left-nav-list-wrapper{
+  }
+  .left-nav-item{
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid #C0C0C0;
+    img{
+      width:70px;
+      height:55px;
+    }
+    .item-content{
+      flex: 1;
+      padding: 4px 8px;
+      box-sizing: border-box;
+      .content-title{
+        font-size: 13px;
+      }
+      .content-desc{
+        color: #3A88D9;
+        font-size: 12px;
+        padding-top: 4px;
+      }
+    }
+    .more-img{
+      width: 15px;
+      height: 15px;
+      position: relative;
+      top:2px;
+    }
+  }
+  .fishing-main{
+    flex: 1;
+  }
+  .left-nav-sub-wrapper{
+    &.link-active{
+      background:#F5F8FA
+    }
+  }
+  .left-nav-sub-item{
+    display: flex;
+    padding: 16px;
+    padding-bottom:5px;
+    .thumb-wrapper{
+      width: 60px;
+      display: flex;
+      margin-left: 10px;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      align-items: center;
+      img{
+        width:50px;
+        height:50px;
+      }
+      p{
+        padding: 0;
+        font-size: 12px;
+        color: #BBBBBB;
+        margin: 0;
+        line-height: 2;
+      }
+    }
+
+    .item-content{
+      flex: 1;
+      padding: 4px 8px;
+      box-sizing: border-box;
+      .content-title{
+        font-size: 12px;
+      }
+      .content-desc{
+        color: #3A88D9;
+        font-size: 12px;
+        padding-top: 4px;
+      }
+    }
+
+    .more-img{
+      width: 13px;
+      height: 13px;
+      position: relative;
+      top:2px;
+    }
+  }
 </style>

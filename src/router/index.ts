@@ -27,7 +27,7 @@ export default new Router({
       path: '/',
       component: Layout,
       redirect: '/fishingmange/index',
-      name: 'Dashboard',
+      name: '首页',
       meta: { hidden: true },
       children: [{
         path: 'dashboard',
@@ -43,6 +43,18 @@ export default new Router({
           name: 'Fishingmange',
           component: () => import(/* webpackChunkName: "fishingmange" */ '@/views/fishingmange/index.vue'),
           meta: { title: '渔类管理', icon: '导航栏/渔场管理.png' },
+        },
+      ],
+    },
+    {
+      path: '/devicemanage',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          name: 'DeviceManage',
+          component: () => import(/* webpackChunkName: "devicemanage" */ '@/views/devicemanage/index.vue'),
+          meta: { title: '设备管理', icon: '导航栏/设备管理.png' },
         },
       ],
     },

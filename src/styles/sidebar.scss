@@ -42,6 +42,13 @@
         display: inline-block;
         transition: all .28s;
       }
+      .un-logo{
+        margin-top: 8px;
+        width: 20px;
+        height: 20px;
+        margin-left:8px;
+        display: inline-block;
+      }
     }
     .is-horizontal {
       display: none;
@@ -150,40 +157,10 @@
   min-height: calc(100vh - 50px);
   display: flex;
   .left-nav-wrapper{
-    width: 250px;
+    width: 250px !important;
     min-height: calc(100vh - 50px);
     box-sizing: border-box;
     box-shadow:1px 2px 10px rgba(187,187,187,0.75);
-  }
-  .left-nav-list-wrapper{
-  }
-  .left-nav-item{
-    display: flex;
-    padding: 16px;
-    border-bottom: 1px solid #C0C0C0;
-    img{
-      width:70px;
-      height:55px;
-    }
-    .item-content{
-      flex: 1;
-      padding: 4px 8px;
-      box-sizing: border-box;
-      .content-title{
-        font-size: 13px;
-      }
-      .content-desc{
-        color: #3A88D9;
-        font-size: 12px;
-        padding-top: 4px;
-      }
-    }
-    .more-img{
-      width: 15px;
-      height: 15px;
-      position: relative;
-      top:2px;
-    }
   }
   .fishing-main{
     flex: 1;

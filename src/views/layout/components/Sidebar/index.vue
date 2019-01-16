@@ -2,6 +2,7 @@
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <transition name="fade-transform" mode="out-in">
       <img v-if="!isCollapse" class="logo" :src="require('@pic/导航栏/logo.png')">
+      <img v-else class="un-logo" :src="require('@pic/导航栏/un-logo.png')">
     </transition>
     <el-menu
       :show-timeout="200"
