@@ -10,6 +10,7 @@
           <p>{{navItem.title}}</p>
         </div>
       </div>
+      <el-button class='add-device-btn' type="primary" @click="handleAddDevice" size='small'>添加设备</el-button>
     </div>
     <div class="fishing-main">
       <el-form ref="couponForm" :model="searchForm" :rules="rules" :inline="true" size="mini" class="add-coupon-form">
@@ -40,58 +41,41 @@
         <el-table-column label="设备信息">
           <template slot-scope="scope">
             <div class="tb-list">
-              <div class="tb-item">
-                设备名称：<span class="tb-item-dark">{{scope.row.deviceInfo.name}}</span>
-              </div>
-              <div class="tb-item">
-                设备编号：<span class="tb-item-dark">{{scope.row.deviceInfo.id}}</span>
-              </div>
-              <div class="tb-item">
-                设备型号：<span class="tb-item-dark">{{scope.row.deviceInfo.type}}</span>
-              </div>
+              <div class="tb-item">设备名称：<span class="tb-item-dark">{{scope.row.deviceInfo.name}}</span></div>
+              <div class="tb-item">设备编号：<span class="tb-item-dark">{{scope.row.deviceInfo.id}}</span></div>
+              <div class="tb-item">设备型号：<span class="tb-item-dark">{{scope.row.deviceInfo.type}}</span></div>
             </div>
           </template>
         </el-table-column>
         <el-table-column label="来源信息">
           <template slot-scope="scope">
             <div class="tb-list">
-              <div class="tb-item">
-                企业：<span class="tb-item-dark">{{scope.row.sourceInfo.business}}</span>
-              </div>
-              <div class="tb-item">
-                联系人：<span class="tb-item-dark">{{scope.row.sourceInfo.person}}</span>
-              </div>
-              <div class="tb-item">
-                电话：<span class="tb-item-dark">{{scope.row.sourceInfo.phone}}</span>
-              </div>
+              <div class="tb-item">企业：<span class="tb-item-dark">{{scope.row.sourceInfo.business}}</span></div>
+              <div class="tb-item">联系人：<span class="tb-item-dark">{{scope.row.sourceInfo.person}}</span></div>
+              <div class="tb-item">电话：<span class="tb-item-dark">{{scope.row.sourceInfo.phone}}</span></div>
             </div>
           </template>
         </el-table-column>
         <el-table-column label="来源信息">
           <template slot-scope="scope">
             <div class="tb-list">
-              <div class="tb-item">
-                设备状态：<span class="tb-item-dark">{{scope.row.deviceState.devicestate}}</span>
-              </div>
-              <div class="tb-item">
-                关联状态：<span class="tb-item-dark">{{scope.row.deviceState.contachstate}}</span>
-              </div>
-              <div class="tb-item">
-                关联信息：<span class="tb-item-dark">{{scope.row.deviceState.contactinfo}}</span>
-              </div>
+              <div class="tb-item">设备状态：<span class="tb-item-dark">{{scope.row.deviceState.devicestate}}</span></div>
+              <div class="tb-item">关联状态：<span class="tb-item-dark">{{scope.row.deviceState.contachstate}}</span></div>
+              <div class="tb-item">关联信息：<span class="tb-item-dark">{{scope.row.deviceState.contactinfo}}</span></div>
             </div>
           </template>
         </el-table-column>
          <el-table-column label="设备信息">
           <template slot-scope="scope">
-            <div class="options-wrapper">
-              <img class="associated-img" :src="require('@pic/设备管理/associated.png')">
-              <img class="show-img" :src="require('@pic/设备管理/查看.png')">
-              <img class="del-img" :src="require('@pic/设备管理/删除.png')">
-            </div>
+            <el-button type="primary" size="mini">关联</el-button>
+            <el-button size="mini">查看</el-button>
+            <el-button type="danger" size="mini">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
+      <!-- 添加设备 S -->
+      <add-device :show.sync="showAddDeviceDialog" />
+      <!-- 添加设备 E -->
       <!-- S 分页组件 -->
       <pagination
         class="pagination"
@@ -108,9 +92,11 @@
 <script type="text/ecmascript-6">
 // load('AIzaSyCpZ9-yQ0VfQBiwEZZRulkwMyA7-zLzQOg');
 import { Pagination } from '@/components/index'
+import AddDevice from './components/adddevice/index'
 export default {
   components: {
-    Pagination
+    Pagination,
+    AddDevice
   },
   data () {
     return {
@@ -121,6 +107,7 @@ export default {
         currentPage: 0
       },
       selIndex: 0,
+      showAddDeviceDialog: false,
       navList: [
         { title: '水质检测设备', imgSrc: require('@pic/设备管理/水质检测仪.png'), style: {width: '40px', height: '40px'}},
         { title: '风送投料机', imgSrc: require('@pic/设备管理/投料机.png'), style: {width: '25px', height: '25px'}},
@@ -153,7 +140,11 @@ export default {
   mounted () {
   },
   methods: {
-    getList () {}
+    getList () {},
+    // 添加设备
+    handleAddDevice () {
+      this.showAddDeviceDialog = true
+    }
   }
 }
 </script>
@@ -161,6 +152,9 @@ export default {
 <style scoped lang="scss">
   .fishing-view{
 
+  }
+  .left-nav-wrapper{
+    text-align: center;
   }
   .left-nav-item-wrapper{
     display: flex;
@@ -198,12 +192,15 @@ export default {
       height: 12px;
     }
     .show-img{
-      width: 25px;
-      height: 16px;
+      width: 24px;
+      height: 18px;
     }
     .del-img{
-      width: 20px;
+      width: 18px;
       height: 16px;
     }
+  }
+  .add-device-btn{
+    margin-top:40px;
   }
 </style>
