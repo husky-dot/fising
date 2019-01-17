@@ -58,6 +58,18 @@ export default new Router({
         },
       ],
     },
+    {
+      path: '/productlog',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          name: 'productlog',
+          component: () => import(/* webpackChunkName: "productlog" */ '@/views/productlog/index.vue'),
+          meta: { title: '生产日志', icon: '导航栏/日志管理.png' },
+        },
+      ],
+    },
     // {
     //   path: '/nested',
     //   component: Layout,

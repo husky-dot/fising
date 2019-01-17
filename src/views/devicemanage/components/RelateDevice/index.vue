@@ -10,38 +10,41 @@
       :visible.sync="visible">
       <div class="form-wrapper">
         <el-form ref="addForm" :model="addForm" :rules="rules" :inline="true" size="mini" label-position='top' label-width="80px">
-          <el-form-item label="设备类型:">
-            <el-select v-model="addForm.type" placeholder="请选择设备类型">
+          <el-form-item label="关联渔场:">
+            <el-select v-model="addForm.type" placeholder="请选择渔场">
               <el-option label="区域一" value="shanghai"></el-option>
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="设备编号:">
-            <el-input placeholder="请输入设备编号" v-model="addForm.type"/>
+          <el-form-item label="关联池塘：">
+            <el-select v-model="addForm.type" placeholder="请选择池塘">
+              <el-option label="区域一" value="shanghai"></el-option>
+              <el-option label="区域二" value="beijing"></el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="来源单位:">
+          <el-form-item label="通道一名称：">
+            <el-input placeholder="请输入通道一对接设备名称" v-model="addForm.type"/>
+          </el-form-item>
+          <el-form-item label="连接状态：">
             <el-input placeholder="自动载入" v-model="addForm.type"/>
           </el-form-item>
-          <el-form-item label="设备名称:">
-            <el-input placeholder="请输入设备名称" v-model="addForm.type"/>
+          <el-form-item label="通道二名称：">
+            <el-input placeholder="请输入通道二对接设备名称" v-model="addForm.type"/>
           </el-form-item>
-          <el-form-item label="联系人:">
+          <el-form-item label="连接状态：">
             <el-input placeholder="自动载入" v-model="addForm.type"/>
           </el-form-item>
-          <el-form-item label="型号:">
-            <el-input placeholder="请输入设备名称" v-model="addForm.type"/>
+          <el-form-item label="通道三名称：">
+            <el-input placeholder="请输入通道三对接设备名称" v-model="addForm.type"/>
           </el-form-item>
-          <el-form-item label="联系电话:">
-            <el-input placeholder="请输入设备名称" v-model="addForm.type"/>
+          <el-form-item label="连接状态：">
+            <el-input placeholder="自动载入" v-model="addForm.type"/>
           </el-form-item>
-          <el-form-item label="设备参数:">
-            <el-input placeholder="请输入设备名称" v-model="addForm.type"/>
+          <el-form-item label="通道四名称：">
+            <el-input placeholder="请输入通道三对接设备名称" v-model="addForm.type"/>
           </el-form-item>
-          <el-form-item label="购买日期:">
-            <el-date-picker type="date" placeholder="选择日期" v-model="addForm.type" />
-          </el-form-item>
-          <el-form-item label="当前状态:">
-            <el-input placeholder="请输入设备名称" v-model="addForm.type"/>
+          <el-form-item label="连接状态：">
+            <el-input placeholder="请自动载入" v-model="addForm.type"/>
           </el-form-item>
            <el-form-item />
           <el-form-item align="right" style="margin-top:30px;">

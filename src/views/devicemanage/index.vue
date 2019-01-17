@@ -67,7 +67,7 @@
         </el-table-column>
          <el-table-column label="设备信息">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini">关联</el-button>
+            <el-button type="primary" size="mini" @click="hanldeRealte">关联</el-button>
             <el-button size="mini">查看</el-button>
             <el-button type="danger" size="mini">删除</el-button>
           </template>
@@ -76,6 +76,9 @@
       <!-- 添加设备 S -->
       <add-device :show.sync="showAddDeviceDialog" />
       <!-- 添加设备 E -->
+      <!-- 关联设备 S -->
+      <relate-device :show.sync="relateDeviceDialog" />
+      <!-- 关联设备 E -->
       <!-- S 分页组件 -->
       <pagination
         class="pagination"
@@ -92,11 +95,13 @@
 <script type="text/ecmascript-6">
 // load('AIzaSyCpZ9-yQ0VfQBiwEZZRulkwMyA7-zLzQOg');
 import { Pagination } from '@/components/index'
-import AddDevice from './components/adddevice/index'
+import AddDevice from './components/AddDevice/index'
+import RelateDevice from './components/RelateDevice/index'
 export default {
   components: {
     Pagination,
-    AddDevice
+    AddDevice,
+    RelateDevice
   },
   data () {
     return {
@@ -108,6 +113,7 @@ export default {
       },
       selIndex: 0,
       showAddDeviceDialog: false,
+      relateDeviceDialog: false,
       navList: [
         { title: '水质检测设备', imgSrc: require('@pic/设备管理/水质检测仪.png'), style: {width: '40px', height: '40px'}},
         { title: '风送投料机', imgSrc: require('@pic/设备管理/投料机.png'), style: {width: '25px', height: '25px'}},
@@ -144,6 +150,10 @@ export default {
     // 添加设备
     handleAddDevice () {
       this.showAddDeviceDialog = true
+    },
+    // 关联设备
+    hanldeRealte () {
+      this.relateDeviceDialog = true
     }
   }
 }
