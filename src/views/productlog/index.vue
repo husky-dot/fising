@@ -57,12 +57,31 @@
               <p class="sub-title">成鱼存量</p>
             </div>
             <div class="left-con-item">
-              <el-button type="primary" size="small">销售</el-button>
+              <el-button class="sale-btn" type="primary" size="small">销售</el-button>
             </div>
           </div>
         </div>
         <div class="fishing-hd-right">
-
+          <el-form :model="searchForm" :rules="rules" size="mini" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="活动名称" prop="name">
+              <el-date-picker
+                v-model="searchForm.daterange" type="daterange" range-separator="至"
+                start-placeholder="开始日期" end-placeholder="结束日期">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label="活动区域">
+              <el-col :span="11">
+                <el-select v-model="searchForm.state" placeholder="选择状态">
+                  <el-option label="区域一" value="shanghai"></el-option>
+                  <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+              </el-col>
+              <el-col :span="11" style='margin-left:10px;'>
+                <el-button type="primary">查询</el-button>
+                <el-button>取消</el-button>
+              </el-col>
+            </el-form-item>
+          </el-form>
         </div>
       </div>
     </div>
@@ -72,6 +91,11 @@
 export default {
   data () {
     return {
+      searchForm: {
+        pageSize: 10,
+        currentPage: 0,
+        daterange: null
+      }
     }
   },
   components: {
@@ -189,6 +213,13 @@ export default {
         display: flex;
         .left-con-item{
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 12px;
+          .sale-btn{
+            width: 120px;
+          }
           .weight{
             color: #3A88D9;
             font-size:23px;
@@ -197,6 +228,9 @@ export default {
               font-size: 16px;
               padding-left: 4px;
             }
+          }
+          .sub-title{
+            color: #5D5D5D;
           }
         }
       }
