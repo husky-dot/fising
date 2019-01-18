@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from '@/views/layout/Layout.vue';
-
+import LayoutRouter from '@/views/layout/RouterView.vue'
 Vue.use(Router);
 
 /*
@@ -61,13 +61,24 @@ export default new Router({
     {
       path: '/productlog',
       component: Layout,
+      redirect: '/discount/scholarship',
+      meta: {  title: '生产日志', icon: '导航栏/日志管理.png' },
       children: [
         {
-          path: 'index',
+          path: '/discount/scholarship',
           name: 'productlog',
-          component: () => import(/* webpackChunkName: "productlog" */ '@/views/productlog/index.vue'),
-          meta: { title: '生产日志', icon: '导航栏/日志管理.png' },
-        },
+          component: LayoutRouter,
+          redirect: '/discount/scholarship',
+          meta: {  title: '生产日志', icon: '导航栏/日志管理.png', hidden: true},
+          children: [
+            {
+              path: '/discount/scholarship',
+              name: 'SaleRecord',
+              component: () => import(/* webpackChunkName: "productlog" */ '@/views/productlog/index.vue'),
+              meta: { hidden: true},
+            }
+          ]
+        }
       ],
     },
     // {

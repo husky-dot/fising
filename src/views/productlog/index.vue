@@ -48,6 +48,7 @@
       </div>
     </div>
     <div class="fishing-main">
+      <router-view />
       <div class="fishing-header">
         <div class="fishing-hd-left">
           <img :src="require('@pic/生产日志/鱼.png')" slot="reference">
@@ -62,7 +63,7 @@
           </div>
         </div>
         <div class="fishing-hd-right">
-          <el-form :model="searchForm" :rules="rules" size="mini" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form :model="searchForm" size="mini" ref="ruleForm" label-width="100px" class="demo-ruleForm">
             <el-form-item label="活动名称" prop="name">
               <el-date-picker
                 v-model="searchForm.daterange" type="daterange" range-separator="至"
@@ -84,21 +85,116 @@
           </el-form>
         </div>
       </div>
+
+      <el-table :data="list"
+        row-key="id"
+        style="margin-top:40px;"
+        :header-cell-style="{background:'#F1F8FE'}"
+        v-loading="loading" border stripe>
+        <el-table-column label="投苗日期/批次号" align="center">
+          <template slot-scope="scope">
+            {{scope.row.data}} <br> {{scope.row.batchNo}}
+          </template>
+        </el-table-column>
+        <el-table-column label="种类" align="center">
+          <template slot-scope="scope">
+            <div class="type-wrapper">
+              <img class="type-img" :src="require('@pic/生产日志/鱼2.png')">
+              {{scope.row.type}}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="投苗情况">
+          <template slot-scope="scope">
+            <div class="tb-list">
+              <div class="tb-item"><span class="tb-item-dark">{{scope.row.castInfo.name}}</span></div>
+              <div class="tb-item">规格：<span class="tb-item-dark">{{scope.row.castInfo.sec}}</span></div>
+              <div class="tb-item">数量：<span class="tb-item-dark">{{scope.row.castInfo.count}}</span></div>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="养殖成本">
+          <template slot-scope="scope">
+            <div class="tb-list">
+              <div class="tb-item">鱼苗成本：<span class="tb-item-dark">{{scope.row.proCoast.fishCoast}}</span></div>
+              <div class="tb-item">饲料成本：<span class="tb-item-dark">{{scope.row.proCoast.foodCoast}}</span></div>
+              <div class="tb-item">其它成本：<span class="tb-item-dark">{{scope.row.proCoast.otherCoast}}</span></div>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="养殖状态">
+          <template slot-scope="scope">
+            <div class="tb-list">
+              <div class="tb-item">状态：<span class="tb-item-dark">{{scope.row.proStatus.status}}</span></div>
+              <div class="tb-item">均重：<span class="tb-item-dark">{{scope.row.proStatus.weight}}</span></div>
+              <div class="tb-item">存塘量：<span class="tb-item-dark">{{scope.row.proStatus.exitCount}}</span></div>
+            </div>
+          </template>
+        </el-table-column>
+         <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <div class="opt-wrapper">
+              <router-link  :to="{ path: '/productlog/salerecord'}">
+                <img class="opt-img1" :src="require('@pic/生产日志/销售.png')">
+              </router-link>
+              <img class="opt-img2" :src="require('@pic/生产日志/二维码.png')">
+              <img class="opt-img3" :src="require('@pic/生产日志/详情.png')">
+            </div>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!-- S 分页组件 -->
+      <pagination
+        class="pagination"
+        :current-page.sync="searchForm.currentPage"
+        :page-size.sync="searchForm.pageSize"
+        :total="total"
+        @change="getList"
+      />
+      <!-- E 分页组件 -->
     </div>
   </div>
 </template>
 <script>
+import { Pagination } from '@/components/index'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
+      loading: false,
+      total: 0,
       searchForm: {
         pageSize: 10,
         currentPage: 0,
         daterange: null
-      }
+      },
+      list: [
+        {
+          data: '2018-09-10',
+          batchNo: 'BD19019021',
+          type: '南美小龙霞',
+          castInfo: {
+          name: '抗病DN对虾',
+          sec: '1000尾/斤',
+          count: '200'
+        }, 
+        proCoast: {
+          fishCoast: 2000,
+          foodCoast: 10000,
+          otherCoast: 1000
+        }, 
+        proStatus: {
+          status: '养殖中',
+          weight: '1kg',
+          exitCount: '20000kg'
+        }}
+      ]
     }
   },
-  components: {
+  methods: {
+    getList () {}
   }
 }
 </script>
@@ -238,6 +334,45 @@ export default {
     }
     .fishing-hd-right{
       flex: 1;
+    }
+  }
+  .type-wrapper{
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    box-sizing: border-box;
+    justify-content: center;
+    .type-img{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+  }
+
+  .tb-item-dark{
+    color: #3A88D9;
+  }
+  
+  .opt-wrapper{
+    display: flex;
+    padding: 0 16px;
+    justify-content: space-between;
+    .opt-img1{
+      width: 22px;
+      height: 22px;
+    }
+    .opt-img2{
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top:1px;
+    }
+    .opt-img3{
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top:1px;
     }
   }
 </style>
