@@ -2,6 +2,9 @@
   <el-menu class="navbar" mode="horizontal">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
     <breadcrumb />
+    <el-tooltip :content="'全屏'" effect="dark" placement="bottom">
+      <screenfull class="screenfull right-menu-item"/>
+    </el-tooltip>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar">
@@ -23,15 +26,18 @@
 
 <script lang="ts">
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import Screenfull from '@/components/Screenfull/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue';
 import { Component, Vue } from 'vue-property-decorator';
 import { AppModule } from '@/store/modules/app';
 import { UserModule } from '@/store/modules/user';
 
+
 @Component({
   components: {
     Breadcrumb,
     Hamburger,
+    Screenfull
   },
 })
 export default class Navbar extends Vue {

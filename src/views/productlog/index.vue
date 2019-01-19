@@ -48,7 +48,6 @@
       </div>
     </div>
     <div class="fishing-main">
-      <router-view />
       <div class="fishing-header">
         <div class="fishing-hd-left">
           <img :src="require('@pic/生产日志/鱼.png')" slot="reference">
@@ -134,11 +133,15 @@
          <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <div class="opt-wrapper">
-              <router-link  :to="{ path: '/productlog/salerecord'}">
+              <router-link  :to="{ path: '/managelog/productlog/index/salerecord'}">
                 <img class="opt-img1" :src="require('@pic/生产日志/销售.png')">
               </router-link>
-              <img class="opt-img2" :src="require('@pic/生产日志/二维码.png')">
-              <img class="opt-img3" :src="require('@pic/生产日志/详情.png')">
+              <router-link  :to="{ path: '/managelog/productlog/index/retrospectinfo'}">
+                <img class="opt-img2" :src="require('@pic/生产日志/二维码.png')">
+               </router-link>
+               <router-link  :to="{ path: '/managelog/productlog/index/logdetail'}">
+                <img class="opt-img3" :src="require('@pic/生产日志/详情.png')">
+               </router-link>
             </div>
           </template>
         </el-table-column>

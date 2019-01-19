@@ -1,13 +1,19 @@
 <template>
-  <el-container>
+  <div class="log-view">
     <el-header>
-        <el-form ref="couponForm" :model="searchForm" :inline="true" size="mini" class="form-wrapper">
+      <el-form ref="couponForm" :model="pageParams" :inline="true" size="mini" class="form-wrapper">
         <el-form-item label="选择日期：" prop="daterange">
           <el-date-picker type="daterange" start-placeholder="开始日期" end-placeholder="结束日期"
-            v-model="searchForm.daterange"
+            v-model="pageParams.daterange"
             style="width:305px"/>
         </el-form-item>
-        <el-form-item style="margin-left:40px;">
+        <el-form-item label="选择来源：">
+          <el-select v-model="pageParams.region" placeholder="请选择来源">
+            <el-option label="区域一" value="shanghai"></el-option>
+            <el-option label="区域二" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
           <el-button id="search" type="primary">查询</el-button>
         </el-form-item>
         <el-form-item>
@@ -18,7 +24,6 @@
     <el-main>
       <el-table :data="list"
         row-key="id"
-        style="margin-top:40px;"
         :header-cell-style="{background:'#F1F8FE'}"
         v-loading="loading" border stripe>
         <el-table-column label="销售日期/单号" align="center">
@@ -53,43 +58,22 @@
             </div>
           </template>
         </el-table-column>
-         <el-table-column label="备注" prop="mark"/>
-         <el-table-column label="操作" align="center">
-          <template slot-scope="scope">
-            <div class="opt-wrapper">
-              <img class="opt-img2" :src="require('@pic/生产日志/二维码.png')">
-              <img class="opt-img3" :src="require('@pic/生产日志/详情.png')">
-            </div>
-          </template>
-        </el-table-column>
+        <el-table-column label="备注" prop="mark"/>
       </el-table>
     </el-main>
-    <!-- S 分页组件 -->
-    <pagination
-      class="pagination"
-      :current-page.sync="searchForm.currentPage"
-      :page-size.sync="searchForm.pageSize"
-      :total="total"
-      @change="getList"
-    />
-    <!-- E 分页组件 -->
-  </el-container>
+  </div>
 </template>
 <script>
-import { Pagination } from '@/components/index'
 export default {
-  components: {
-    Pagination
-  },
   data () {
     return {
       total: 0,
       loading: false,
-      searchForm: {
-        daterange: null,
-        region: null,
+      pageParams: {
+        pageSize: 10,
         currentPage: 0,
-        pageSize: 10
+        daterange: null,
+        region: null
       },
       list: [
         {
@@ -115,38 +99,13 @@ export default {
       ]
     }
   },
-  methods: {
-    getList () {}
+  components: {
   }
 }
 </script>
 
 <style scope lang='scss'>
-  .form-wrapper{
-    margin: 30px auto;
-  }
-  .tb-item-dark{
-    color: #3A88D9;
-  }
-  .opt-wrapper{
-    display: flex;
-    padding: 0 16px;
-    justify-content: space-between;
-    .opt-img1{
-      width: 22px;
-      height: 22px;
-    }
-    .opt-img2{
-      width: 20px;
-      height: 20px;
-      position: relative;
-      top:1px;
-    }
-    .opt-img3{
-      width: 20px;
-      height: 20px;
-      position: relative;
-      top:1px;
-    }
+
+  .log-view{
   }
 </style>

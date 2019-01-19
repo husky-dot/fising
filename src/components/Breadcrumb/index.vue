@@ -33,10 +33,11 @@ export default class Breadcrumb extends Vue {
         return true;
       }
     });
-    const first = matched[0];
-    if (first && first.name !== 'dashboard') {
-      matched = [{ path: '/dashboard', meta: { title: '首页' }} as RouteRecord].concat(matched);
-    }
+    // const first = matched[0];
+    // if (first && first.name !== 'dashboard') {
+    //   matched = [{ path: '/dashboard', meta: { title: '首页' }} as RouteRecord].concat(matched);
+    // }
+    console.log(matched)
     this.levelList = matched;
   }
 

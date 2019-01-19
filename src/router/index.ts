@@ -15,127 +15,94 @@ Vue.use(Router);
   }
 */
 
+export const constantRouterMap = [
+  { path: '/login', component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue') },
+  { path: '/register', component: () => import(/* webpackChunkName: "register" */ '@/views/register/index.vue') },
+  { path: '/404', component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue') },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/fishingmange/index',
+  //   name: '首页',
+  //   meta: { hidden: true },
+  //   children: [{
+  //     path: 'dashboard',
+  //     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+  //   }],
+  // },
+  {
+    path: '/',
+    component: Layout,
+    children: [
+      {
+        path: '/fishingmange',
+        name: 'Fishingmange',
+        component: () => import(/* webpackChunkName: "fishingmange" */ '@/views/fishingmange/index.vue'),
+        meta: { title: '渔类管理', icon: '导航栏/渔场管理.png' },
+      },
+    ],
+  },
+  {
+    path: '/devicemanage',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'DeviceManage',
+        component: () => import(/* webpackChunkName: "devicemanage" */ '@/views/devicemanage/index.vue'),
+        meta: { title: '设备管理', icon: '导航栏/设备管理.png' },
+      },
+    ],
+  },
+  {
+    path: '/managelog',
+    name: 'ManageLog',
+    component: Layout,
+    redirect: '/managelog/productlog',
+    meta: {  title: '日志管理', icon: '导航栏/日志管理.png' },
+    children: [
+      {
+        path: 'productlog',
+        name: 'productlog',
+        component: LayoutRouter,
+        redirect: '/managelog/productlog/index',
+        children: [
+          {
+            path: 'index',
+            name: 'ProductLog',
+            component: () => import(/* webpackChunkName: "productlog" */ '@/views/productlog/index.vue'),
+            meta: {  title: '生产日志', icon: '导航栏/日志管理.png' },
+          },
+          {
+            path: '/managelog/productlog/index/salerecord',
+            name: 'SaleRecord',
+            component: () => import(/* webpackChunkName: "salerecord" */ '@/views/productlog/SaleRecord.vue'),
+            meta: { title: '销售记录', hidden: true},
+          },
+          {
+            path: '/managelog/productlog/index/retrospectinfo',
+            name: 'RetrospectInfo',
+            component: () => import(/* webpackChunkName: "salerecord" */ '@/views/productlog/RetrospectInfo.vue'),
+            meta: { title: '追溯信息', hidden: true},
+          },
+          {
+            path: '/managelog/productlog/index/logdetail',
+            name: 'LogDetail',
+            component: () => import(/* webpackChunkName: "salerecord" */ '@/views/productlog/LogDetail.vue'),
+            meta: { title: '日志详情', hidden: true},
+          }
+        ]
+      }
+    ],
+  },
+  { path: '*', redirect: '/404' },
+]
+
+
+
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({ x: 0, y: 0 }),
   base: process.env.BASE_URL,
-  routes: [
-    { path: '/login', component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue') },
-    { path: '/register', component: () => import(/* webpackChunkName: "register" */ '@/views/register/index.vue') },
-    { path: '/404', component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue') },
-    {
-      path: '/',
-      component: Layout,
-      redirect: '/fishingmange/index',
-      name: '首页',
-      meta: { hidden: true },
-      children: [{
-        path: 'dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
-      }],
-    },
-    {
-      path: '/fishingmange',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          name: 'Fishingmange',
-          component: () => import(/* webpackChunkName: "fishingmange" */ '@/views/fishingmange/index.vue'),
-          meta: { title: '渔类管理', icon: '导航栏/渔场管理.png' },
-        },
-      ],
-    },
-    {
-      path: '/devicemanage',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          name: 'DeviceManage',
-          component: () => import(/* webpackChunkName: "devicemanage" */ '@/views/devicemanage/index.vue'),
-          meta: { title: '设备管理', icon: '导航栏/设备管理.png' },
-        },
-      ],
-    },
-    {
-      path: '/productlog',
-      component: Layout,
-      redirect: '/discount/scholarship',
-      meta: {  title: '生产日志', icon: '导航栏/日志管理.png' },
-      children: [
-        {
-          path: '/discount/scholarship',
-          name: 'productlog',
-          component: LayoutRouter,
-          redirect: '/discount/scholarship',
-          meta: {  title: '生产日志', icon: '导航栏/日志管理.png', hidden: true},
-          children: [
-            {
-              path: '/discount/scholarship',
-              name: 'SaleRecord',
-              component: () => import(/* webpackChunkName: "productlog" */ '@/views/productlog/index.vue'),
-              meta: { hidden: true},
-            }
-          ]
-        }
-      ],
-    },
-    // {
-    //   path: '/nested',
-    //   component: Layout,
-    //   redirect: '/nested/menu1',
-    //   name: 'Nested',
-    //   meta: { title: 'Nested', icon: 'nested' },
-    //   children: [
-    //     {
-    //       path: 'menu1',
-    //       component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index.vue'),
-    //       name: 'Menu1',
-    //       meta: { title: 'menu1' },
-    //       children: [
-    //         {
-    //           path: 'menu1-1',
-    //           component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
-    //           name: 'Menu1-1',
-    //           meta: { title: 'menu1-1' },
-    //         },
-    //         {
-    //           path: 'menu1-2',
-    //           component: () => import(/* webpackChunkName: "menu1-2" */ '@/views/nested/menu1/menu1-2/index.vue'),
-    //           name: 'Menu1-2',
-    //           meta: { title: 'menu1-2' },
-    //           children: [
-    //             {
-    //               path: 'menu1-2-1',
-    //               component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
-    //               name: 'Menu1-2-1',
-    //               meta: { title: 'menu1-2-1' },
-    //             },
-    //             {
-    //               path: 'menu1-2-2',
-    //               component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
-    //               name: 'Menu1-2-2',
-    //               meta: { title: 'menu1-2-2' },
-    //             },
-    //           ],
-    //         },
-    //         {
-    //           path: 'menu1-3',
-    //           component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
-    //           name: 'Menu1-3',
-    //           meta: { title: 'menu1-3' },
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       path: 'menu2',
-    //       component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
-    //       name: 'Menu2',
-    //       meta: { title: 'menu2' },
-    //     },
-    //   ],
-    // },
-    { path: '*', redirect: '/404' },
-  ],
+  routes: constantRouterMap
 });
