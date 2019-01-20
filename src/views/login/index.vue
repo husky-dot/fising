@@ -78,7 +78,6 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UserModule } from '@/store/modules/user';
 import { Form as ElForm } from 'element-ui';
 import { Route } from 'vue-router';
-
 const validateUsername = (rule: any, value: string, callback: any) => {
   if (!isValidUsername(value)) {
     callback(new Error('请输入正确的用户名'));
@@ -95,7 +94,7 @@ const validatePass = (rule: any, value: string, callback: any) => {
 };
 
 @Component
-export default class Login extends Vue {
+export default class Login extends Vue{
   loginForm = {
     username: 'admin',
     password: 'admin',
@@ -275,5 +274,23 @@ $light_gray:#eee;
       }
     }
   }
+}
+
+
+/* ipad横屏 */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape){
+  .main-wrapper{
+    .login-log-wrapper{
+      width:650px !important;
+      img{
+        width: 600px !important;
+        height: 400px !important;
+      }
+    }
+  }
+
 }
 </style>

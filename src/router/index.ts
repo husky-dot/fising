@@ -33,6 +33,7 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
+    redirect: '/fishingmange',
     children: [
       {
         path: '/fishingmange',
@@ -94,6 +95,29 @@ export const constantRouterMap = [
         ]
       }
     ],
+  },
+  {
+    path: '/managegoods',
+    name: 'ManageGoods',
+    component: Layout,
+    redirect: '/managegoods/goods',
+    meta: {  title: '物资管理', icon: '导航栏/饲料管理.png' },
+    children: [
+      {
+        path: 'goods',
+        name: 'Goods',
+        component: LayoutRouter,
+        redirect: '/managelog/goods/index',
+        children: [
+          {
+            path: 'index',
+            name: 'F+oods',
+            component: () => import(/* webpackChunkName: "productlog" */ '@/views/managegoods/index.vue'),
+            meta: {  title: '物资管理', icon: '导航栏/饲料管理.png'},
+          }
+        ]
+      }
+    ]
   },
   { path: '*', redirect: '/404' },
 ]

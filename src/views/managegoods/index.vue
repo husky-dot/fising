@@ -1,54 +1,15 @@
 <template>
-  <div class="fishing-main-container">
-    <div class="left-nav-wrapper">
-      <div class='left-nav-list-wrapper'>
-        <div class="left-nav-item-wrapper">
-          <div class='left-nav-item'>
-            <img :src="require('@pic/bg.png')">
-            <div class="item-content">
-              <div class='content-title'>广东南沙草鱼养殖基地</div>
-              <div class="content-desc">2000亩,草鱼</div>
-            </div>
-            <el-popover
-            placement="right"
-            width="60"
-            trigger="click">
-              <div class="more-list">
-                <div class="more-list-item">添加池塘</div>
-                <div class="more-list-item">编辑基地</div>
-                <div class="more-list-item">删除基地</div>
-              </div>
-              <img class='more-img' :src="require('@pic/更多.png')" slot="reference">
-            </el-popover>
-          </div>
-          <div class="left-nav-sub-wrapper link-active">
-            <div class="left-nav-sub-item">
-              <div class="thumb-wrapper">
-                <img :src="require('@pic/bg.png')">
-                <p>301</p>
-              </div>
-              <div class="item-content">
-                <div class='content-title'>广东南沙草鱼养殖基地</div>
-                <div class="content-desc">2000亩,草鱼</div>
-              </div>
-              <el-popover
-              placement="right"
-              width="60"
-              trigger="click">
-                <div class="more-list">
-                  <div class="more-list-item">添加池塘</div>
-                  <div class="more-list-item">编辑基地</div>
-                  <div class="more-list-item">删除基地</div>
-                </div>
-                <img class='more-img' :src="require('@pic/更多.png')" slot="reference">
-              </el-popover>
-            </div>
+  <div class="mangood-view">
+    <div class="fishing-main-container">
+      <div class="left-nav-wrapper">
+        <div class='left-nav-list-wrapper'>
+          <div class="left-nav-item-wrapper" :class="{'active': selIndex === index}" v-for="(navItem,index) in navList" :key="index">
+            <img :src="navItem.imgSrc" :width="navItem.style.width" :height="navItem.style.height">
+            <p>{{navItem.title}}</p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="fishing-main">
-      <div class="fishing-main-wrapper" style='width:100%'>
+      <div class="fishing-main">
         <div class="fishing-header">
           <div class="fishing-hd-left">
             <img :src="require('@pic/生产日志/鱼.png')" slot="reference">
@@ -85,7 +46,7 @@
             </el-form>
           </div>
         </div>
-        
+
         <el-table :data="list"
           row-key="id"
           style="margin-top:40px;"
@@ -147,34 +108,28 @@
             </template>
           </el-table-column>
         </el-table>
-        <!-- S 分页组件 -->
-        <pagination
-          class="pagination"
-          :current-page.sync="searchForm.currentPage"
-          :page-size.sync="searchForm.pageSize"
-          :total="total"
-          @change="getList"
-        />
-        <!-- E 分页组件 -->
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Pagination } from '@/components/index'
 export default {
   components: {
-    Pagination
   },
   data () {
     return {
-      loading: false,
       total: 0,
+      loading: false,
       searchForm: {
         pageSize: 10,
-        currentPage: 0,
-        daterange: null
+        currentPage: 0
       },
+      selIndex: 0,
+      navList: [
+        { title: '饲料仓库', imgSrc: require('@pic/库存管理/饲料.png'), style: {width: '40px', height: '40px'}},
+        { title: '渔药仓库', imgSrc: require('@pic/库存管理/渔药.png'), style: {width: '25px', height: '25px'}},
+        { title: '鱼苗仓库', imgSrc: require('@pic/库存管理/渔苗.png'), style: {width: '30px', height: '30px'}}
+      ],
       list: [
         {
           data: '2018-09-10',
@@ -197,185 +152,113 @@ export default {
         }}
       ]
     }
-  },
-  methods: {
-    getList () {}
   }
 }
 </script>
 
-
-<style scoped lang="scss">
-
-  #map {
-    width:100%;
-    height: 100%;
-    display: block;
-  }
-  .left-nav-list-wrapper{
-  }
-  .left-nav-item{
-    display: flex;
-    padding: 16px;
-    border-bottom: 1px solid #C0C0C0;
-    img{
-      width:70px;
-      height:55px;
-    }
-    .item-content{
-      flex: 1;
-      padding: 4px 8px;
-      box-sizing: border-box;
-      .content-title{
-        font-size: 13px;
-      }
-      .content-desc{
-        color: #3A88D9;
-        font-size: 12px;
-        padding-top: 4px;
-      }
-    }
-    .more-img{
-      width: 15px;
-      height: 15px;
-      position: relative;
-      top:2px;
-    }
-  }
-  .fishing-main{
-    flex: 1;
-    padding: 30px;
-  }
-  .left-nav-sub-wrapper{
-    &.link-active{
-      background:#F5F8FA
-    }
-  }
-  .left-nav-sub-item{
-    display: flex;
-    padding: 16px;
-    padding-bottom:5px;
-    .thumb-wrapper{
-      width: 60px;
+<style scope lang='scss'>
+  .mangood-view{
+    .left-nav-item-wrapper{
       display: flex;
-      margin-left: 10px;
-      flex-direction: column;
-      justify-content: center;
-      box-sizing: border-box;
       align-items: center;
+      height: 100px;
+      width: 100%;
+      padding: 0 16px;
+      border-bottom: 1px solid #f0f0f0;
+      &.active {
+        background:#F5F8FA
+      }
       img{
-        width:50px;
-        height:50px;
-      }
-      p{
-        padding: 0;
-        font-size: 12px;
-        color: #BBBBBB;
-        margin: 0;
-        line-height: 2;
+        width: 50px;
+        height: 50px;
+        margin-right: 16px;
       }
     }
-
-    .item-content{
+    .fishing-main{
       flex: 1;
-      padding: 4px 8px;
-      box-sizing: border-box;
-      .content-title{
-        font-size: 12px;
-      }
-      .content-desc{
-        color: #3A88D9;
-        font-size: 12px;
-        padding-top: 4px;
-      }
+      padding: 30px;
     }
-
-    .more-img{
-      width: 13px;
-      height: 13px;
-      position: relative;
-      top:2px;
-    }
-  }
-  .fishing-header{
-    display: flex;
-    .fishing-hd-left{
-      flex: 1;
+    .fishing-header{
       display: flex;
-      border-right: 1px solid #bbb;
-      img{
-        width: 80px;
-        height: 80px;
-      }
-      .left-content{
+      .fishing-hd-left{
         flex: 1;
         display: flex;
-        .left-con-item{
+        border-right: 1px solid #bbb;
+        img{
+          width: 80px;
+          height: 80px;
+        }
+        .left-content{
           flex: 1;
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding: 12px;
-          .sale-btn{
-            width: 120px;
-          }
-          .weight{
-            color: #3A88D9;
-            font-size:23px;
-            font-family:FZHanZhenGuangBiaoS-GB;
-            .unit{
-              font-size: 16px;
-              padding-left: 4px;
+          .left-con-item{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 12px;
+            .sale-btn{
+              width: 120px;
+            }
+            .weight{
+              color: #3A88D9;
+              font-size:23px;
+              font-family:FZHanZhenGuangBiaoS-GB;
+              .unit{
+                font-size: 16px;
+                padding-left: 4px;
+              }
+            }
+            .sub-title{
+              color: #5D5D5D;
             }
           }
-          .sub-title{
-            color: #5D5D5D;
-          }
         }
+      
       }
-    
+      .fishing-hd-right{
+        flex: 1;
+      }
     }
-    .fishing-hd-right{
-      flex: 1;
-    }
-  }
-  .type-wrapper{
-    display: flex;
-    align-items: center;
-    padding: 0 6px;
-    box-sizing: border-box;
-    justify-content: center;
-    .type-img{
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      margin-right: 6px;
-    }
-  }
 
-  .tb-item-dark{
-    color: #3A88D9;
-  }
-  
-  .opt-wrapper{
-    display: flex;
-    padding: 0 16px;
-    justify-content: space-between;
-    .opt-img1{
-      width: 22px;
-      height: 22px;
+    .type-wrapper{
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      box-sizing: border-box;
+      justify-content: center;
+      .type-img{
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
     }
-    .opt-img2{
-      width: 20px;
-      height: 20px;
-      position: relative;
-      top:1px;
+
+    .tb-item-dark{
+      color: #3A88D9;
     }
-    .opt-img3{
-      width: 20px;
-      height: 20px;
-      position: relative;
-      top:1px;
+    
+    .opt-wrapper{
+      display: flex;
+      padding: 0 16px;
+      justify-content: space-between;
+      .opt-img1{
+        width: 22px;
+        height: 22px;
+      }
+      .opt-img2{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top:1px;
+      }
+      .opt-img3{
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top:1px;
+      }
     }
   }
 </style>

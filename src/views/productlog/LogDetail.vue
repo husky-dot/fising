@@ -26,45 +26,66 @@
         row-key="id"
         :header-cell-style="{background:'#F1F8FE'}"
         v-loading="loading" border stripe>
-        <el-table-column label="销售日期/单号" align="center">
+        <el-table-column label="日期" align="center">
           <template slot-scope="scope">
-            {{scope.row.data}} <br> <span class="tb-item-dark">{{scope.row.batchNo}}</span>
+            {{scope.row.data}}
           </template>
         </el-table-column>
-        <el-table-column label="成鱼信息">
+        <el-table-column label="投入品信息" align="center">
           <template slot-scope="scope">
-            <div class="tb-list">
-              <div class="tb-item">品种：<span class="tb-item-dark">{{scope.row.castInfo.name}}</span></div>
-              <div class="tb-item">规格：<span class="tb-item-dark">{{scope.row.castInfo.sec}}</span></div>
-              <div class="tb-item">数量：<span class="tb-item-dark">{{scope.row.castInfo.count}}</span></div>
+            <!-- <div class="type-info-wrapper">
+              <div class="img-wrapper bg-red">
+                <img class="opt-img2" :src="require('@pic/工具栏/饲料.png')">
+              </div>
+              <span>饲料</span>
+            </div> -->
+            <div class="type-info-wrapper">
+              <div class="img-wrapper bg-green">
+                <img class="opt-img2" :src="require('@pic/工具栏/药物.png')">
+              </div>
+              <span>渔药</span>
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="销售情况">
+        <el-table-column label="投入品信息">
           <template slot-scope="scope">
             <div class="tb-list">
-              <div class="tb-item">规格：<span class="tb-item-dark">{{scope.row.proCoast.fishCoast}}</span></div>
-              <div class="tb-item">重量：<span class="tb-item-dark">{{scope.row.proCoast.foodCoast}}</span></div>
-              <div class="tb-item">总价：<span class="tb-item-dark">{{scope.row.proCoast.otherCoast}}</span></div>
+              <span class="tb-item-dark text-blue">{{scope.row.castInfo.name}}</span>
+              <div class="tb-item">种类：<span class="tb-item-dark">{{scope.row.castInfo.sec}}</span></div>
+              <div class="tb-item">规格：<span class="tb-item-dark">{{scope.row.castInfo.count}}</span></div>
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="采购情况">
+        <el-table-column label="投入情况">
           <template slot-scope="scope">
             <div class="tb-list">
-              <div class="tb-item">采购人：<span class="tb-item-dark">{{scope.row.proStatus.status}}</span></div>
-              <div class="tb-item">联系电话：<span class="tb-item-dark">{{scope.row.proStatus.weight}}</span></div>
-              <div class="tb-item">地址：<span class="tb-item-dark">{{scope.row.proStatus.exitCount}}</span></div>
+              <div class="tb-item">投入数量：<span class="tb-item-dark">{{scope.row.proCoast.fishCoast}}</span></div>
+              <div class="tb-item">投入重量：<span class="tb-item-dark">{{scope.row.proCoast.foodCoast}}</span></div>
+              <div class="tb-item">共计成本：<span class="tb-item-dark text-red">{{scope.row.proCoast.otherCoast}}</span></div>
             </div>
           </template>
         </el-table-column>
         <el-table-column label="备注" prop="mark"/>
       </el-table>
+
+      <!-- S 分页组件 -->
+      <pagination
+        class="pagination"
+        :current-page.sync="pageParams.currentPage"
+        :page-size.sync="pageParams.pageSize"
+        :total="total"
+        @change="getList"
+      />
+      <!-- E 分页组件 -->
     </el-main>
   </div>
 </template>
 <script>
+import { Pagination } from '@/components/index'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       total: 0,
@@ -78,7 +99,6 @@ export default {
       list: [
         {
           data: '2018-09-10',
-          batchNo: 'BD19019021',
           type: '南美小龙霞',
           castInfo: {
           name: '抗病DN对虾',
@@ -99,7 +119,8 @@ export default {
       ]
     }
   },
-  components: {
+  methods: {
+    getList () {}
   }
 }
 </script>
@@ -107,5 +128,23 @@ export default {
 <style scope lang='scss'>
 
   .log-view{
+  }
+  .type-info-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .img-wrapper{
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 6px;
+      img{
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 </style>

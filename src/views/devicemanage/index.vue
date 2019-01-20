@@ -16,19 +16,17 @@
       <el-form ref="couponForm" :model="searchForm" :rules="rules" :inline="true" size="mini" class="add-coupon-form">
         <el-form-item label="选择日期：" prop="daterange">
           <el-date-picker type="daterange" start-placeholder="开始日期" end-placeholder="结束日期"
-            v-model="searchForm.daterange"
-            style="width:305px"/>
+          v-model="searchForm.daterange"
+          style="width:305px"/>
         </el-form-item>
         <el-form-item label="选择来源：">
-          <el-select v-model="searchForm.region" placeholder="请选择来源">
+          <el-select v-model="searchForm.region" placeholder="请选择来源" style='width:80%'>
             <el-option label="区域一" value="shanghai"></el-option>
             <el-option label="区域二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item>
+        <el-form-item style='margin-right:0'>
           <el-button id="search" type="primary">查询</el-button>
-        </el-form-item>
-        <el-form-item>
           <el-button id="download" type="primary" plain>重置</el-button>
         </el-form-item>
       </el-form>
@@ -56,7 +54,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="来源信息">
+        <el-table-column label="设备状态">
           <template slot-scope="scope">
             <div class="tb-list">
               <div class="tb-item">设备状态：<span class="tb-item-dark">{{scope.row.deviceState.devicestate}}</span></div>
@@ -65,11 +63,13 @@
             </div>
           </template>
         </el-table-column>
-         <el-table-column label="设备信息">
+         <el-table-column label="设备信息" width="110">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click="hanldeRealte">关联</el-button>
-            <el-button size="mini">查看</el-button>
-            <el-button type="danger" size="mini">删除</el-button>
+            <div class="opts-btn">
+              <el-button type="primary" size="mini" @click="hanldeRealte">关联</el-button>
+              <el-button size="mini">查看</el-button>
+              <el-button type="danger" size="mini">删除</el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -212,5 +212,14 @@ export default {
   }
   .add-device-btn{
     margin-top:40px;
+  }
+  .opts-btn{
+    display:flex;
+    flex-direction: column;
+    button{
+      margin-left: 0;
+      width: 90%;
+      margin-bottom: 10px;
+    }
   }
 </style>
