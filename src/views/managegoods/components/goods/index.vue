@@ -10,7 +10,7 @@
             <p class="sub-title">成鱼存量</p>
           </div>
           <div class="left-con-item">
-            <el-button class="sale-btn" type="primary" size="mini">销售</el-button>
+            <el-button @click="onAddFood" class="sale-btn" type="primary" size="mini">添加</el-button>
           </div>
         </div>
       </div>
@@ -99,6 +99,8 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- S 添加饲料 -->
+    <AddFood :show.sync='addFoodDialog' />
     <!-- S 分页组件 -->
       <pagination
         class="pagination"
@@ -113,14 +115,17 @@
 
 <script type="text/ecmascript-6">
 import { Pagination } from '@/components/index'
+import AddFood from './AddFood.vue'
 export default {
   components: {
-    Pagination
+    Pagination,
+    AddFood
   },
   data () {
     return {
       total: 0,
       loading: false,
+      addFoodDialog: false,
       searchForm: {
         pageSize: 10,
         currentPage: 0
@@ -149,7 +154,10 @@ export default {
     }
   },
   methods: {
-    getList () {}
+    getList () {},
+    onAddFood () {
+      this.addFoodDialog = true
+    }
   }
 }
 </script>
