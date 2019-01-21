@@ -100,23 +100,30 @@ export const constantRouterMap = [
     path: '/managegoods',
     name: 'ManageGoods',
     component: Layout,
-    redirect: '/managegoods/goods',
+    redirect: '/managegoods/foods/index',
     meta: {  title: '物资管理', icon: '导航栏/饲料管理.png' },
     children: [
       {
-        path: 'goods',
-        name: 'Goods',
+        path: 'foods',
+        name: 'Foods',
         component: LayoutRouter,
-        redirect: '/managelog/goods/index',
+        redirect: '/managegoods/foods/index',
         children: [
           {
             path: 'index',
-            name: 'F+oods',
+            name: 'Index',
             component: () => import(/* webpackChunkName: "productlog" */ '@/views/managegoods/index.vue'),
             meta: {  title: '物资管理', icon: '导航栏/饲料管理.png'},
+          },
+          {
+            path: 'detail',
+            name: 'Detail',
+            component: () => import(/* webpackChunkName: "productlog" */ '@/views/managegoods/FoodDetail.vue'),
+            meta: { title: '饲料详情', hidden: true},
           }
         ]
       }
+      
     ]
   },
   { path: '*', redirect: '/404' },

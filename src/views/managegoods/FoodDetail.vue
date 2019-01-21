@@ -1,5 +1,5 @@
 <template>
-  <div class="log-view">
+  <div class="fooddetail-view">
     <div class="form-wrapper">
       <el-form ref="couponForm" :model="pageParams" :inline="true" size="mini">
         <el-form-item label="选择日期：" prop="daterange">
@@ -126,7 +126,7 @@ export default {
 </script>
 
 <style scope lang='scss'>
-  .log-view{
+  .fooddetail-view{
     overflow: hidden;
     .form-wrapper{
       box-sizing: border-box;

@@ -4,9 +4,9 @@
       title="添加饲料"
       @close="closeDialog"
       @open="handleOpen"
-      top="5vh"
+      top="2vh"
       show="show"
-      width="500px"
+      width="550px"
       :visible.sync="visible">
       <div class="form-wrapper">
         <el-form ref="addForm" :model="addForm" :rules="rules" :inline="true" size="mini" label-position='top' label-width="80px">
@@ -23,43 +23,40 @@
             <el-input placeholder="请输入供应单位" v-model="addForm.type"/>
           </el-form-item>
           <el-form-item label="规格:">
-            <el-col :span="11">
-              <el-input placeholder="请输入" v-model="addForm.type"/>
-            </el-col>
-            <el-col :span="8">
+            <div class="form-inline">
+              <el-input class='input' placeholder="请输入" v-model="addForm.type"/>
               <el-select v-model="addForm.type" placeholder="选择单位">
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
-            </el-col>
-            <el-col :span="2">kg</el-col>
+              <span>kg</span>
+            </div>
           </el-form-item>
           <el-form-item label="联系人:">
             <el-input placeholder="请输入联系人姓名" v-model="addForm.type"/>
           </el-form-item>
           <el-form-item label="采购数量:">
-            <el-col :span="11">
-              <el-input placeholder="请输入" v-model="addForm.type"/>
-            </el-col>
-            <el-col :span="11">
-              <el-input placeholder="计算重量" v-model="addForm.type"/>kg
-            </el-col>
+            <div class="form-inline">
+              <el-input class='input' placeholder="请输入" v-model="addForm.type"/>
+              <el-input placeholder="计算重量" v-model="addForm.type"/>
+              <span>kg</span>
+            </div>
           </el-form-item>
           <el-form-item label="联系电话:">
             <el-input placeholder="请输入联系人电话" v-model="addForm.type"/>
           </el-form-item>
           <el-form-item label="总价:">
-            <el-col :span="11">
-              <el-input placeholder="请输入总价" v-model="addForm.type"/>
-            </el-col>
-            <el-col :span="11">
-              <el-input placeholder="计算单价" v-model="addForm.type"/>元
-            </el-col>
+            <div class="form-inline">
+              <el-input placeholder="总价" v-model="addForm.type"/>
+              <el-input placeholder="计算单价" v-model="addForm.type"/>
+              <span>元</span>
+            </div>
           </el-form-item>
           <el-form-item label="购买日期:">
             <el-date-picker type="date" placeholder="选择日期" v-model="addForm.type" />
           </el-form-item>
-          <el-form-item align="right" style="margin-top:30px;">
+          <el-form-item />
+          <el-form-item align="right" style="margin-top:10px;width:100%">
             <el-button type="primary" @click="handleSave">保存</el-button>
             <el-button @click="closeDialog">取消</el-button>
           </el-form-item>
@@ -114,20 +111,38 @@ export default {
   .form-wrapper{
     display: flex;
     justify-content: center;
-    padding-left: 30px;
+    padding-left: 10px;
     box-sizing: border-box;
     width: 100%;
     .el-form-item {
       width: 180px;
     }
     .el-date-editor--date{
-      width: 180px !important;
+      width: 180px;
+    }
+    .el-input{
+      width: 210px;
     }
     .el-select{
-      width: 100px !important;
+      width: 180px;
     }
+    
   }
   .el-form-item:nth-child(2n+1){
-    margin-right: 40px;
+    margin-right: 60px;
+  }
+  .form-inline{
+    display: flex;
+    width: 220px;
+    .el-input{
+      width: 120px !important;
+      margin-right: 15px;
+    }
+    .el-select{
+      .el-input{
+        width: 105px !important;
+        margin-right: 15px;
+      }
+    }
   }
 </style>
