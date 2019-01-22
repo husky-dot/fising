@@ -282,9 +282,9 @@ export default {
   bottom: 0;
   right: 0;
   left: 0px;
-  height: 350px;
+  height: 380px;
   background:#EFF3F6;
-  padding: 30px;
+  padding: 15px;
   box-sizing: border-box;
   .diglog-wrapper-main{
     display: flex;
@@ -313,7 +313,7 @@ export default {
         padding: 20px 16px;
         box-sizing: border-box;
         position: relative;
-        &::after{
+        &:after{
           content: '';
           width:1px;
           height:47px;
@@ -321,6 +321,11 @@ export default {
           position: absolute;
           right: 0;
           top:30px;
+        }
+        &:last-child{
+          &::after{
+            display: none;
+          }
         }
         .item-img-wrapper{
           width: 45px;
@@ -363,20 +368,64 @@ export default {
               margin-left: 4px;
             }
           }
-          
         }
+      }
+    }
+    .body-main{
+      display: flex;
+      .body-main-left{
+        width: 250px;
+      }
+      .body-main-right{
+        flex: 1;
+        overflow: scroll;
       }
     }
   }
   .diglog-wrapper-left{
     flex: 1;
     background: #fff;
+    overflow: scroll;
   }
   .diglog-wrapper-right{
+    margin-left: 8px;
     width: 300px;
-    background: red;
+    background: #fff;
+    .info-img{
+      width: 100%;
+    }
+    .pond-name{
+      padding: 10px 16px;
+      .pond{
+        color: #263238;
+        font-size: 15px;
+        margin-right: 8px;
+      }
+      .name{
+        color: #BBBBBB;
+        font-size: 13px;
+      }
+    }
   }
 }
+
+.diglog-list{
+  margin: 4px 0;
+  .list-item{
+    padding: 0 16px;
+    display: flex;
+    font-size: 13px;
+    line-height: 24px;
+    .label{
+      width: 80px;
+    }
+    .name{
+      flex: 1;
+    }
+  }
+}
+
+
 
 .fixed-right{
   position: fixed;
@@ -394,6 +443,7 @@ export default {
     justify-content: center;
     margin-bottom: 15px;
     cursor: pointer;
+    background: #fff;
     img{
       width: 20px;
       height: 20px;
@@ -409,6 +459,60 @@ export default {
       background: #3a88d9;
       color: #fff;
     }
+  }
+}
+
+.char{
+  height: 250px;
+}
+
+/* ipad横屏 */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape){
+  .diglog-wrapper{
+    padding: 5px !important;
+  }
+  .left-data-item{
+    padding: 15px 8px !important;
+    &:after{
+      top:20px !important;
+    }
+  }
+  .item-img-wrapper{
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 4px !important;
+    img{
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+  .item-content{
+    .item-title{
+      font-size: 12px !important;
+    }
+    span{
+      font-size:13px !important;
+      &.unit{
+        font-size: 12px !important;
+      }
+    }
+  }
+  .fixed-right{
+    img{
+      width: 12px !important;
+      height: 12px !important;
+    }
+    .fixed-right-item{
+      width: 20px;
+      height: 20px;
+      font-size:12px;
+    }
+  }
+  .diglog-wrapper-right{
+    width: 200px !important;
   }
 }
 </style>
