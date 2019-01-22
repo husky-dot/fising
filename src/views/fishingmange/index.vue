@@ -16,7 +16,7 @@
                 <div class="more-list-item">编辑基地</div>
                 <div class="more-list-item">删除基地</div>
               </div>
-              <img class="more-img" :src="require('@pic/更多.png')" slot="reference">
+              <img class="more-img" :src="require('@pic/更多.png')">
             </el-popover>
           </div>
           <div class="left-nav-sub-wrapper link-active">
@@ -34,7 +34,7 @@
                   <div class="more-list-item" @click="drawingMap(true)">编辑 池塘</div>
                   <div class="more-list-item">编辑基地</div>
                 </div>
-                <img class="more-img" :src="require('@pic/更多.png')" slot="reference">
+                <img class="more-img" :src="require('@pic/更多.png')">
               </el-popover>
             </div>
           </div>
@@ -43,14 +43,28 @@
     </div>
     <div class="fishing-main">
       <div id="map"></div>
+      <div class="diglog-wrapper">
+        <Pone />
+      </div>
+      <div class="fixed-right">
+        <div class="fixed-right-item">
+          <img class="more-img" :src="require('@pic/放大.png')">
+        </div>
+        <div class="fixed-right-item active">1</div>
+        <div class="fixed-right-item">2</div>
+        <div class="fixed-right-item">3</div>
+        <div class="fixed-right-item">4</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-// load('AIzaSyCpZ9-yQ0VfQBiwEZZRulkwMyA7-zLzQOg');
-
+import Pone from './components/Pond.vue'
 export default {
+  components: {
+    Pone
+  },
   data() {
     return {
       map: null,
@@ -172,15 +186,13 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .fishing-view {
 }
 #map {
   width: 100%;
   height: 100%;
   display: block;
-}
-.left-nav-list-wrapper {
 }
 .left-nav-item {
   display: flex;
@@ -212,6 +224,7 @@ export default {
 }
 .fishing-main {
   flex: 1;
+  position: relative;
 }
 .left-nav-sub-wrapper {
   &.link-active {
@@ -262,6 +275,140 @@ export default {
     height: 13px;
     position: relative;
     top: 2px;
+  }
+}
+.diglog-wrapper{
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  left: 0px;
+  height: 350px;
+  background:#EFF3F6;
+  padding: 30px;
+  box-sizing: border-box;
+  .diglog-wrapper-main{
+    display: flex;
+    box-sizing:border-box;
+    .dialog-title{
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      font-family:YouYuan;
+      font-weight:400;
+      color: #5D5D5D;
+      border-bottom: 1px solid #f0f0f0;
+      img{
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+      }
+    }
+    .left-body-head{
+      display: flex;
+      .left-data-item{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 20px 16px;
+        box-sizing: border-box;
+        position: relative;
+        &::after{
+          content: '';
+          width:1px;
+          height:47px;
+          background:rgba(0,0,0,0.2);
+          position: absolute;
+          right: 0;
+          top:30px;
+        }
+        .item-img-wrapper{
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 8px;
+          img{
+            width: 25px;
+            height: 25px;
+          }
+        }
+        .item-content-wrapper{
+          flex: 1;
+        }
+        .item-content{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          p{
+            margin: 0;
+            padding: 0;
+          }
+          .item-title{
+            color: #5D5D5D;
+            font-size: 13px;
+            line-height: 32px;
+          }
+          span{
+            font-size:22px;
+            font-family:FZHanZhenGuangBiaoS-GB;
+            font-weight:400;
+            &.unit{
+              color: #BBBBBB;
+              font-size: 13px;
+              font-family:Microsoft YaHei UI;
+              margin-left: 4px;
+            }
+          }
+          
+        }
+      }
+    }
+  }
+  .diglog-wrapper-left{
+    flex: 1;
+    background: #fff;
+  }
+  .diglog-wrapper-right{
+    width: 300px;
+    background: red;
+  }
+}
+
+.fixed-right{
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  .fixed-right-item{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow:0px 0px 2px rgba(103,101,101,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    img{
+      width: 20px;
+      height: 20px;
+    }
+    &:first-child{
+      margin-bottom: 60px;
+    }
+    &:hover{
+      background: #3a88d9;
+      color: #fff;
+    }
+    &.active{
+      background: #3a88d9;
+      color: #fff;
+    }
   }
 }
 </style>
