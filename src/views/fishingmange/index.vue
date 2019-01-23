@@ -44,7 +44,10 @@
     <div class="fishing-main">
       <div id="map"></div>
       <div class="diglog-wrapper">
-        <Pone />
+        <!-- 池塘 -->
+        <!-- <Pone /> -->
+        <!-- 生长 -->
+        <Group />
       </div>
       <div class="fixed-right">
         <div class="fixed-right-item">
@@ -60,10 +63,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Pone from './components/Pond.vue'
+// import Pone from './components/Pond.vue'
+import Group from './components//Group.vue'
 export default {
   components: {
-    Pone
+    // Pone,
+    Group
   },
   data() {
     return {
@@ -304,83 +309,8 @@ export default {
         margin-right: 10px;
       }
     }
-    .left-body-head{
-      display: flex;
-      .left-data-item{
-        flex: 1;
-        display: flex;
-        align-items: center;
-        padding: 20px 16px;
-        box-sizing: border-box;
-        position: relative;
-        &:after{
-          content: '';
-          width:1px;
-          height:47px;
-          background:rgba(0,0,0,0.2);
-          position: absolute;
-          right: 0;
-          top:30px;
-        }
-        &:last-child{
-          &::after{
-            display: none;
-          }
-        }
-        .item-img-wrapper{
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 8px;
-          img{
-            width: 25px;
-            height: 25px;
-          }
-        }
-        .item-content-wrapper{
-          flex: 1;
-        }
-        .item-content{
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          p{
-            margin: 0;
-            padding: 0;
-          }
-          .item-title{
-            color: #5D5D5D;
-            font-size: 13px;
-            line-height: 32px;
-          }
-          span{
-            font-size:22px;
-            font-family:FZHanZhenGuangBiaoS-GB;
-            font-weight:400;
-            &.unit{
-              color: #BBBBBB;
-              font-size: 13px;
-              font-family:Microsoft YaHei UI;
-              margin-left: 4px;
-            }
-          }
-        }
-      }
-    }
-    .body-main{
-      display: flex;
-      .body-main-left{
-        width: 250px;
-      }
-      .body-main-right{
-        flex: 1;
-        overflow: scroll;
-      }
-    }
+
+
   }
   .diglog-wrapper-left{
     flex: 1;
@@ -408,23 +338,6 @@ export default {
     }
   }
 }
-
-.diglog-list{
-  margin: 4px 0;
-  .list-item{
-    padding: 0 16px;
-    display: flex;
-    font-size: 13px;
-    line-height: 24px;
-    .label{
-      width: 80px;
-    }
-    .name{
-      flex: 1;
-    }
-  }
-}
-
 
 
 .fixed-right{
@@ -462,9 +375,7 @@ export default {
   }
 }
 
-.char{
-  height: 250px;
-}
+
 
 /* ipad横屏 */
 @media only screen
