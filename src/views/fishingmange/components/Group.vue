@@ -5,6 +5,12 @@
         <img class="more-img" :src="require('@pic/管理详情页/智能分析/智能分析.png')">生长智能分析
       </div>
       <div class="left-body">
+        <div class="left-body-header">
+          <div class='header-item img-item-wrapper'>
+            <img class="more-img" :src="require('@pic/管理详情页/智能分析/鱼.png')">
+            <img class="more-img" :src="require('@pic/管理详情页/智能分析/底座.png')">
+          </div>
+        </div>
         <div class="char" id="category"></div>
       </div>
     </div>
@@ -102,5 +108,8 @@ export default {
   }
   .char{
     height: 250px;
+  }
+  .left-body-header {
+    display: flex;
   }
 </style>

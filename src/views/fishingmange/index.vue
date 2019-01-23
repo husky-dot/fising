@@ -47,7 +47,7 @@
         <!-- 池塘 -->
         <!-- <Pone /> -->
         <!-- 生长 -->
-        <Group />
+        <!-- <Group /> -->
       </div>
       <div class="fixed-right">
         <div class="fixed-right-item">

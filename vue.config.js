@@ -6,7 +6,8 @@ function resolve (dir) {
 
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
+  baseUrl: './',
+  // baseUrl: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
   transpileDependencies: ['vuex-module-decorators'],
   pwa: {
     name: 'vue-typescript-admin-template'
@@ -29,5 +30,18 @@ module.exports = {
       }
     }
   },
-  productionSourceMap: false
+  productionSourceMap: false,
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://110.86.21.246:8886', // 31服务器
+        autoRewrite: true,
+        changeOrigin: true,
+        cookieDomainRewrite: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    }
+  },
 }

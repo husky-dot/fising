@@ -1,22 +1,25 @@
 import { VuexModule, Module, MutationAction, Mutation, Action, getModule } from 'vuex-module-decorators';
-import { login, logout, getInfo } from '@/api/login';
+import { LoginApi, UserApi } from '@/api/index';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 import store from '@/store';
 
 export interface IUserState {
-  token: string;
+  loginName: string;
   name: string;
-  avatar: string;
-  roles: string[];
+  phone: string;
+  userId: string;
+  userType: string;
 }
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
   token = '';
+  loginName = '';
   name = '';
-  avatar = '';
-  roles = [];
-
+  phone = '';
+  userId = '';
+  userType ='';
+  avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif';
   @Mutation
   SET_TOKEN(token: string) {
     this.token = token;
@@ -25,7 +28,7 @@ class User extends VuexModule implements IUserState {
   @Action({ commit: 'SET_TOKEN' })
   async Login(userInfo: { username: string, password: string}) {
     const username = userInfo.username.trim();
-    const { data } = await login(username, userInfo.password);
+    const { data } = await LoginApi.login(username, userInfo.password);
     setToken(data.token);
     return data.token;
   }
@@ -36,34 +39,36 @@ class User extends VuexModule implements IUserState {
     return '';
   }
 
-  @MutationAction({ mutate: [ 'roles', 'name', 'avatar' ] })
+  @MutationAction({ mutate: ['loginName', 'name', 'phone', 'userId', 'userType'] })
   async GetInfo() {
     const token = getToken();
     if (token === undefined) {
       throw Error('GetInfo: token is undefined!');
     }
-    const { data } = await getInfo(token);
+    const { data } = await UserApi.getInfo(token);
     if (data.roles && data.roles.length > 0) {
       return {
-        roles: data.roles,
+        loginName: data.loginName,
         name: data.name,
-        avatar: data.avatar,
+        phone: data.phone,
+        userId: data.userId,
+        userType: data.userType
       };
     } else {
       throw Error('GetInfo: roles must be a non-null array!');
     }
   }
 
-  @MutationAction({ mutate: [ 'token', 'roles' ] })
+  @MutationAction({ mutate: ['token'] })
   async LogOut() {
     if (getToken() === undefined) {
       throw Error('LogOut: token is undefined!');
     }
-    await logout();
     removeToken();
+    await LoginApi.logout();
+    console.log('1111111111111')
     return {
-      token: '',
-      roles: [],
+      token: ''
     };
   }
 }
